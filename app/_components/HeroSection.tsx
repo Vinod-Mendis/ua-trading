@@ -18,15 +18,10 @@ export default function HeroSection() {
           muted
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-60"
-        >
-          <source
-            src="https://res.cloudinary.com/vccpsacloud/video/upload/v1784470263/12973389_1920_1080_60fps_online-video-cutter.com_pkgmsr.webm"
-            type="video/webm"
-          />
-          Your browser does not support the video tag.
-        </video>
+          src="https://res.cloudinary.com/vccpsacloud/video/upload/f_auto,q_auto,w_1280,fps_30/v1784470263/12973389_1920_1080_60fps_online-video-cutter.com_pkgmsr.webm"
+        />
         {/* Overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-950/60 to-slate-950/80 backdrop-blur-[1px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/60 to-slate-950/85" />
       </div>
 
       {/* Hero content */}
