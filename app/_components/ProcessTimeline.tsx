@@ -85,11 +85,11 @@ export default function ProcessTimeline() {
           </motion.div>
         </div>
 
-        {/* Horizontal Separator Line */}
-        <div className="w-full h-px bg-slate-200/80 my-12 lg:my-16" />
+        {/* Horizontal Separator Line (with faded ends) */}
+        <div className="w-full h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent my-12 lg:my-16" />
 
-        {/* Staggered 4-Column Timeline Grid (No borders) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 relative">
+        {/* Staggered 4-Column Timeline Grid with Faded End Vertical Separators */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 relative">
           {phases.map((phase, index) => (
             <motion.div
               key={phase.title}
@@ -97,9 +97,14 @@ export default function ProcessTimeline() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className={`${phase.offsetClass} flex flex-col justify-start min-h-[320px]`}
+              className={`${phase.offsetClass} flex flex-col justify-start min-h-[320px] relative lg:pr-6`}
             >
-              {/* Title with light yellow duration tag (No border, lighter yellow bg & text) */}
+              {/* Vertical Separator between steps with faded top and bottom ends */}
+              {index < phases.length - 1 && (
+                <div className="hidden lg:block absolute right-0 top-6 bottom-6 w-px bg-gradient-to-b from-transparent via-slate-200 to-transparent pointer-events-none" />
+              )}
+
+              {/* Title with light yellow duration tag */}
               <div className="flex items-start gap-2 mb-6 relative">
                 <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 font-display tracking-tight">
                   {phase.title}
@@ -122,20 +127,31 @@ export default function ProcessTimeline() {
         </div>
       </div>
 
-      {/* Bottom Light Yellow Pill Capsules Wave Graphic (No borders) */}
+      {/* Bottom Animated Pill Capsules Wave Graphic (Pure Scale animation from center outward) */}
       <div className="w-full mt-24 sm:mt-32 relative overflow-hidden">
         <div className="flex justify-center items-end gap-1.5 sm:gap-2.5 px-4 w-full">
           {Array.from({ length: 32 }).map((_, i) => {
             const total = 32;
+            const centerIndex = (total - 1) / 2; // 15.5
+            const distanceFromCenter = Math.abs(i - centerIndex);
+            
+            // Bell curve max opacity for soft left & right edge fade
             const normalized = i / (total - 1);
             const edgeFade = Math.sin(normalized * Math.PI);
+            const targetOpacity = Math.max(0.1, edgeFade * 0.85);
+
             return (
-              <div
+              <motion.div
                 key={i}
-                className="w-5 sm:w-8 lg:w-10 h-20 sm:h-24 lg:h-32 rounded-full bg-yellow-200/90 shrink-0"
-                style={{
-                  opacity: Math.max(0.1, edgeFade * 0.85),
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: targetOpacity, scale: 1 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{
+                  duration: 0.3,
+                  delay: distanceFromCenter * 0.03, // Middle first, spreading out fast to both sides
+                  ease: [0.34, 1.56, 0.64, 1], // Smooth pop scale easing
                 }}
+                className="w-5 sm:w-8 lg:w-10 h-20 sm:h-24 lg:h-32 rounded-full bg-yellow-200/90 shrink-0"
               />
             );
           })}
