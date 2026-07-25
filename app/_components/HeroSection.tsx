@@ -48,7 +48,7 @@ export default function HeroSection() {
             className="lg:col-span-8"
           >
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-normal text-white tracking-tight leading-tight">
-              Delivering Excellence,
+              Delivering <span className="text-yellow-200 font-medium">Excellence</span>,
               <br />
               Delivering Tomorrow
             </h1>
