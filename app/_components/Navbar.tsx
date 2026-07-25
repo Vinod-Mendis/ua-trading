@@ -32,25 +32,16 @@ export default function Navbar() {
 
   return (
     <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{
-        y: 0,
-        opacity: 1,
-        top: "16px",
-        width: "85%",
-        maxWidth: "1152px",
-        borderRadius: "6px",
-        backgroundColor: "rgba(255, 255, 255, 0.95)",
-        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
-        paddingTop: scrolled ? "10px" : "14px",
-        paddingBottom: scrolled ? "10px" : "14px",
-      }}
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{
-        type: "spring",
-        stiffness: 300,
-        damping: 30,
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
+        delay: 0.1,
       }}
-      className="fixed left-0 right-0 mx-auto z-50 backdrop-blur-md text-slate-900 overflow-hidden"
+      className={`fixed top-4 left-0 right-0 mx-auto z-50 w-[92%] sm:w-[90%] lg:w-[85%] max-w-6xl rounded-md bg-white/95 backdrop-blur-md shadow-xl text-slate-900 overflow-hidden transition-all duration-300 ${
+        scrolled ? "py-2.5 shadow-2xl bg-white/98" : "py-3.5"
+      }`}
     >
       <div className="w-full px-6 sm:px-8 flex items-center justify-between">
         {/* Left: Brand Name / Logo */}
