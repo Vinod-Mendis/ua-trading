@@ -2,12 +2,11 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ChevronRight, MessageCircle, Globe } from "lucide-react";
 
 export default function HeroSection() {
   return (
     <section
-      className="relative min-h-[90vh] lg:min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 pt-24 lg:pt-32"
+      className="relative min-h-screen flex flex-col justify-end overflow-hidden bg-slate-950 pt-28 lg:pt-36"
       aria-label="Hero"
     >
       {/* Background Video */}
@@ -17,73 +16,68 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
+          className="absolute inset-0 w-full h-full object-cover opacity-70 scale-105"
           src="https://res.cloudinary.com/vccpsacloud/video/upload/f_auto,q_auto,w_1280,fps_30/v1784470263/12973389_1920_1080_60fps_online-video-cutter.com_pkgmsr.webm"
         />
-        {/* Overlay to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/75 via-slate-950/60 to-slate-950/85" />
+        {/* Subtle Dark Vignette Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/75" />
       </div>
 
-      {/* Hero content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 text-center py-16 lg:py-24">
-        {/* Minimalist Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-slate-200 text-xs uppercase tracking-widest font-semibold mb-8"
-        >
-          <Globe className="w-3.5 h-3.5 text-gold-400" />
-          International Logistics &amp; Sourcing
-        </motion.div>
+      {/* Full-width Divider Line Across Screen */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="relative z-10 w-full flex items-center gap-4 px-6 sm:px-10 lg:px-16 mb-12 lg:mb-20"
+      >
+        <div className="flex items-center gap-1.5 text-white/90 text-xs sm:text-sm tracking-widest font-mono font-medium uppercase whitespace-nowrap">
+          <span className="text-white/60">+</span> HOME
+        </div>
+        <div className="h-px flex-1 bg-white/25" />
+      </motion.div>
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white font-display leading-[1.15] mb-8"
-        >
-          Connecting Cambodia
-          <br />
-          <span className="text-gold-400 font-extrabold">with the World</span>
-        </motion.h1>
-
-        {/* Subheadline */}
-        <motion.p
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-base sm:text-lg lg:text-xl text-slate-200 max-w-2xl mx-auto mb-12 leading-relaxed font-light"
-        >
-          Reliable shipping and sourcing solutions from Cambodia to Sri Lanka and
-          destinations worldwide. Transparent process, competitive rates.
-        </motion.p>
-
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto sm:max-w-none"
-        >
-          <Link
-            href="/quote"
-            className="bg-gold-600 hover:bg-gold-500 text-white font-semibold flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-sm w-full sm:w-auto shadow-lg shadow-gold-600/10 transition-all duration-250 hover:-translate-y-[1px]"
+      {/* Hero Content Container (Full Width Aligned) */}
+      <div className="relative z-10 w-full px-6 sm:px-10 lg:px-16 pb-16 lg:pb-24">
+        {/* Hero Split Bottom Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+          {/* Left Column: Stacked Display Headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="lg:col-span-8"
           >
-            Get a Shipping Quote
-            <ChevronRight className="w-4 h-4" />
-          </Link>
-          <a
-            href="https://wa.me/85512345678?text=Hello%2C%20I%20would%20like%20to%20know%20more%20about%20your%20shipping%20services."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-white/10 hover:bg-white/15 border border-white/20 hover:border-white/30 backdrop-blur-md text-white font-medium flex items-center justify-center gap-2 px-8 py-4 rounded-lg text-sm w-full sm:w-auto transition-all duration-250 hover:-translate-y-[1px]"
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-normal text-white tracking-tight leading-tight">
+              Delivering Excellence,
+              <br />
+              Delivering Tomorrow
+            </h1>
+          </motion.div>
+
+          {/* Right Column: Corner Bracket Paragraph & Glass CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="lg:col-span-4 flex flex-col items-start lg:items-start"
           >
-            <MessageCircle className="w-4 h-4 text-emerald-400" />
-            Chat on WhatsApp
-          </a>
-        </motion.div>
+            {/* Paragraph with Corner Elbow Bracket Symbol & Compact Standard Max-Width */}
+            <div className="flex items-start gap-2.5 mb-8 text-white/90 text-base sm:text-lg lg:text-xl font-light leading-snug max-w-xs">
+              <span className="text-white/70 select-none font-mono text-xl leading-none pt-0.5">
+                └
+              </span>
+              <p>We understand the complexities of modern logistics.</p>
+            </div>
+
+            {/* Translucent Glass Rectangular Button */}
+            <Link
+              href="/quote"
+              className="inline-flex items-center justify-center bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 hover:border-white/40 text-white font-normal text-sm tracking-wide px-8 py-3.5 rounded-none transition-all duration-200 hover:shadow-lg shadow-black/20"
+            >
+              Request A Quote
+            </Link>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
