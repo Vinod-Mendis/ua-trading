@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -29,30 +30,39 @@ export default function Navbar() {
     setIsOpen(false);
   }, [pathname]);
 
-  const isHomePage = pathname === "/";
-  const isTransparent = isHomePage && !scrolled;
-
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 w-full ${
-        scrolled
-          ? "bg-slate-950/90 backdrop-blur-md border-b border-white/10 text-white py-4 shadow-lg"
-          : isTransparent
-          ? "bg-transparent text-white py-6 lg:py-8"
-          : "bg-slate-900/90 backdrop-blur-md text-white py-4"
-      }`}
+    <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{
+        y: 0,
+        opacity: 1,
+        top: "16px",
+        width: "85%",
+        maxWidth: "1152px",
+        borderRadius: "6px",
+        backgroundColor: "rgba(255, 255, 255, 0.95)",
+        boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)",
+        paddingTop: scrolled ? "10px" : "14px",
+        paddingBottom: scrolled ? "10px" : "14px",
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 30,
+      }}
+      className="fixed left-0 right-0 mx-auto z-50 backdrop-blur-md text-slate-900 overflow-hidden"
     >
-      <div className="w-full px-6 sm:px-10 lg:px-16 flex items-center justify-between">
+      <div className="w-full px-6 sm:px-8 flex items-center justify-between">
         {/* Left: Brand Name / Logo */}
         <Link
           href="/"
           className="flex items-baseline gap-0.5 group tracking-wider"
           aria-label="A & B Trading Home"
         >
-          <span className="font-bold text-lg sm:text-xl font-display text-white uppercase tracking-widest">
+          <span className="font-bold text-lg sm:text-xl font-display text-slate-900 uppercase tracking-widest">
             FREIGHT
           </span>
-          <span className="text-xs text-white/80 font-mono align-super">
+          <span className="text-xs font-mono align-super text-slate-500">
             ®
           </span>
         </Link>
@@ -70,8 +80,8 @@ export default function Navbar() {
                 href={href}
                 className={`text-xs uppercase tracking-widest font-medium transition-colors py-1 ${
                   active
-                    ? "text-white border-b border-white"
-                    : "text-white/70 hover:text-white"
+                    ? "text-slate-900 border-b border-slate-900"
+                    : "text-slate-600 hover:text-slate-900"
                 }`}
               >
                 {label}
@@ -84,7 +94,7 @@ export default function Navbar() {
         <div className="flex items-center gap-6">
           <Link
             href="/quote"
-            className="text-xs sm:text-sm font-medium tracking-widest uppercase text-white hover:text-white/80 transition-colors py-1 border-b border-transparent hover:border-white/40"
+            className="text-xs sm:text-sm font-medium tracking-widest uppercase text-slate-900 hover:text-slate-700 transition-colors py-1 border-b border-transparent hover:border-slate-300"
           >
             Request A Quote
           </Link>
@@ -92,7 +102,7 @@ export default function Navbar() {
           {/* Mobile menu toggle button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white/90 hover:text-white p-1 focus:outline-none"
+            className="md:hidden text-slate-900 hover:text-slate-700 p-1 focus:outline-none transition-colors"
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -101,25 +111,33 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Drawer Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-slate-950/95 border-b border-white/10 backdrop-blur-xl px-6 py-6 space-y-3 mt-4">
-          <nav className="flex flex-col gap-3">
-            {navLinks.map(({ href, label }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`text-sm uppercase tracking-widest py-2 px-3 rounded transition-colors ${
-                  pathname === href
-                    ? "text-white bg-white/10"
-                    : "text-white/70 hover:text-white"
-                }`}
-              >
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      )}
-    </header>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="md:hidden px-6 py-6 space-y-3 mt-3 rounded-b-md bg-white text-slate-900 border-t border-slate-100"
+          >
+            <nav className="flex flex-col gap-3">
+              {navLinks.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`text-sm uppercase tracking-widest py-2 px-3 rounded transition-colors ${
+                    pathname === href
+                      ? "text-slate-900 bg-slate-100 font-semibold"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-50"
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }
