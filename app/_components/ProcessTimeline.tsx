@@ -1,123 +1,144 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle, FileText, Package, Truck } from "lucide-react";
 
-const steps = [
+const phases = [
   {
-    number: "01",
-    icon: MessageCircle,
+    step: "01",
     title: "Contact Us",
-    description:
-      "Reach out via WhatsApp or our online quote form with your shipping details.",
-    color: "text-slate-900",
-    bg: "bg-slate-50",
-    border: "border-slate-200",
+    duration: "Step 01",
+    offsetClass: "pt-32 sm:pt-36 lg:pt-44", // Lowest position
+    items: [
+      "Reach out via WhatsApp or quote form",
+      "Share package weight & cargo details",
+      "Consult on shipping speed options",
+      "Initial shipping route verification",
+    ],
   },
   {
-    number: "02",
-    icon: FileText,
+    step: "02",
     title: "Receive Quote",
-    description:
-      "Get a clear, upfront quote for weight, dimensions, and speed options.",
-    color: "text-slate-900",
-    bg: "bg-slate-50",
-    border: "border-slate-200",
+    duration: "Step 02",
+    offsetClass: "pt-20 sm:pt-24 lg:pt-28", // Second position
+    items: [
+      "Clear, upfront transparent pricing",
+      "Weight & dimensional calculations",
+      "Sea freight & air freight choices",
+      "Customs declaration estimates",
+    ],
   },
   {
-    number: "03",
-    icon: Package,
+    step: "03",
     title: "Prepare Goods",
-    description:
-      "We assist with packaging, labeling, and all necessary export paperwork.",
-    color: "text-slate-900",
-    bg: "bg-slate-50",
-    border: "border-slate-200",
+    duration: "Step 03",
+    offsetClass: "pt-10 sm:pt-12 lg:pt-14", // Third position
+    items: [
+      "Packaging & box wrapping support",
+      "Professional labeling & barcoding",
+      "Export documentation checks",
+      "Warehousing & pre-shipment inspection",
+    ],
   },
   {
-    number: "04",
-    icon: Truck,
+    step: "04",
     title: "Safe Delivery",
-    description:
-      "Your cargo departs Cambodia and arrives safely at the destination address.",
-    color: "text-slate-900",
-    bg: "bg-slate-50",
-    border: "border-slate-200",
+    duration: "Step 04",
+    offsetClass: "pt-0", // Highest position
+    items: [
+      "Departure from Cambodia handlers",
+      "End-to-end cargo tracking updates",
+      "Destination port customs clearance",
+      "Final door-to-door handoff",
+    ],
   },
 ];
 
 export default function ProcessTimeline() {
   return (
-    <section className="py-28 bg-slate-50 border-b border-slate-100" id="process">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <motion.span
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="inline-block text-gold-600 text-xs font-semibold uppercase tracking-widest mb-4"
-          >
-            How it works
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 15 }}
+    <section className="w-full bg-white py-20 sm:py-28 lg:py-36 text-slate-900 relative overflow-hidden" id="process">
+      <div className="w-full px-6 sm:px-10 lg:px-16">
+        {/* Section Header Grid: Title on Left, Sub-description on Right */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16 lg:mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-slate-900 font-display mb-6"
+            className="lg:col-span-6"
           >
-            Our Shipping Process
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 leading-[1.08] font-display">
+              Our Shipping <br />
+              Process
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-slate-500 text-base max-w-xl mx-auto leading-relaxed"
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-6 lg:pt-2 flex lg:justify-end"
           >
-            A simple, transparent flow from Cambodia to your global destination.
-          </motion.p>
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed max-w-md lg:ml-auto">
+              A simple, transparent flow from initial quote to final delivery, connecting Cambodia to Sri Lanka and global destinations worldwide.
+            </p>
+          </motion.div>
         </div>
 
-        {/* Timeline Grid */}
-        <div className="relative">
-          {/* Connecting line (desktop) */}
-          <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-0.5 bg-slate-200" />
+        {/* Horizontal Separator Line */}
+        <div className="w-full h-px bg-slate-200/80 my-12 lg:my-16" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              return (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 15 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-40px" }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="relative flex flex-col items-center text-center space-y-4"
-                >
-                  {/* Icon Box */}
-                  <div
-                    className={`relative w-20 h-20 rounded-full bg-white border border-slate-200 flex items-center justify-center z-10 transition-transform`}
-                  >
-                    <Icon className={`w-7 h-7 text-slate-800`} strokeWidth={1.5} />
-                    {/* Number Badge */}
-                    <span className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-slate-900 border border-white flex items-center justify-center text-[10px] font-bold text-white">
-                      {step.number}
-                    </span>
-                  </div>
+        {/* Staggered 4-Column Timeline Grid (No borders) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 relative">
+          {phases.map((phase, index) => (
+            <motion.div
+              key={phase.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={`${phase.offsetClass} flex flex-col justify-start min-h-[320px]`}
+            >
+              {/* Title with light yellow duration tag (No border, lighter yellow bg & text) */}
+              <div className="flex items-start gap-2 mb-6 relative">
+                <h3 className="text-3xl sm:text-4xl font-bold text-slate-900 font-display tracking-tight">
+                  {phase.title}
+                </h3>
+                <span className="bg-yellow-100/90 text-amber-700 text-[11px] font-semibold px-2.5 py-0.5 rounded-full inline-flex items-center -mt-1 shrink-0">
+                  {phase.duration}
+                </span>
+              </div>
 
-                  <h3 className="text-slate-900 font-semibold text-lg font-display">
-                    {step.title}
-                  </h3>
-                  <p className="text-slate-500 text-sm leading-relaxed max-w-xs">
-                    {step.description}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
+              {/* Items List */}
+              <ul className="space-y-2.5 text-slate-400 text-xs sm:text-sm leading-relaxed">
+                {phase.items.map((item) => (
+                  <li key={item} className="hover:text-slate-600 transition-colors">
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom Light Yellow Pill Capsules Wave Graphic (No borders) */}
+      <div className="w-full mt-24 sm:mt-32 relative overflow-hidden">
+        <div className="flex justify-center items-end gap-1.5 sm:gap-2.5 px-4 w-full">
+          {Array.from({ length: 32 }).map((_, i) => {
+            const total = 32;
+            const normalized = i / (total - 1);
+            const edgeFade = Math.sin(normalized * Math.PI);
+            return (
+              <div
+                key={i}
+                className="w-5 sm:w-8 lg:w-10 h-20 sm:h-24 lg:h-32 rounded-full bg-yellow-200/90 shrink-0"
+                style={{
+                  opacity: Math.max(0.1, edgeFade * 0.85),
+                }}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
