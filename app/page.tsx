@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import HeroSection from "./_components/HeroSection";
-import TrustBadges from "./_components/TrustBadges";
+import AboutSection from "./_components/AboutSection";
 import ServicesSection from "./_components/ServicesSection";
 import ProcessTimeline from "./_components/ProcessTimeline";
 import TestimonialsSection from "./_components/TestimonialsSection";
@@ -16,7 +16,7 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <TrustBadges />
+      <AboutSection />
       <ServicesSection />
       <ProcessTimeline />
       <TestimonialsSection />
