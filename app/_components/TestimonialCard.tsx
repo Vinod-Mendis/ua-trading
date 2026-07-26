@@ -1,52 +1,87 @@
-import { Star } from "lucide-react";
-
 interface TestimonialCardProps {
+  number?: string;
   name: string;
-  country: string;
-  flag: string;
-  review: string;
-  rating: number;
   role?: string;
+  company?: string;
+  country?: string;
+  flag?: string;
+  review: string;
+  rating?: number;
+  image?: string;
 }
 
 export default function TestimonialCard({
+  number = "01",
   name,
-  country,
-  flag,
-  review,
-  rating,
   role,
+  company,
+  country,
+  review,
+  image,
 }: TestimonialCardProps) {
+  // Format name to ensure trailing comma matching reference design (e.g. "Beau Miller,")
+  const formattedName = name.trim().endsWith(",") ? name.trim() : `${name.trim()},`;
+
+  // Format subtitle (e.g. "IT & Network Manager at Forbes")
+  const subtitle = company
+    ? `${role || ""} at ${company}`.trim()
+    : role
+    ? `${role}${country ? ` · ${country}` : ""}`
+    : country || "";
+
   return (
-    <div className="p-8 rounded-xl bg-white border border-slate-200 hover:border-slate-350 hover:shadow-lg hover:shadow-slate-100 transition-all duration-300 flex flex-col h-full">
-      {/* Stars */}
-      <div className="flex gap-1 mb-6">
-        {Array.from({ length: 5 }).map((_, i) => (
-          <Star
-            key={i}
-            className={`w-4 h-4 ${i < rating ? "text-gold-500 fill-gold-500" : "text-slate-200"}`}
-          />
-        ))}
+    <div className="bg-[#242426] rounded-none overflow-hidden flex flex-col justify-between h-full w-full border-0 outline-none ring-0 shadow-none transition-opacity duration-300">
+      {/* Top Content Area */}
+      <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between overflow-hidden">
+        {/* Number Header */}
+        <div className="text-zinc-400 font-sans text-lg sm:text-xl font-normal mb-4 tracking-wider">
+          {number}
+        </div>
+
+        {/* Quote Text */}
+        <blockquote className="text-zinc-100 text-sm sm:text-base font-normal leading-relaxed flex-1 font-sans overflow-hidden">
+          &ldquo;{review}&rdquo;
+        </blockquote>
       </div>
 
-      {/* Review content */}
-      <blockquote className="text-slate-600 text-sm leading-relaxed flex-1 mb-8 relative font-normal">
-        <span className="relative">&ldquo;{review}&rdquo;</span>
-      </blockquote>
+      {/* Separator Element */}
+      <div className="h-[1px] w-full bg-[#3a3a3e] flex-shrink-0" />
 
-      {/* Author Info */}
-      <div className="flex items-center gap-3.5 border-t border-slate-100 pt-5 mt-auto">
-        <div className="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-base">
-          {flag}
-        </div>
-        <div>
-          <p className="text-slate-900 font-semibold text-sm">{name}</p>
-          <p className="text-slate-400 text-xs mt-0.5">
-            {role ? `${role} · ` : ""}
-            {country}
+      {/* Author Section */}
+      <div className="bg-[#242426] flex items-center justify-between h-[90px] relative rounded-none flex-shrink-0">
+        {/* Author Info */}
+        <div className="p-5 flex-1 flex flex-col justify-center pr-3 overflow-hidden">
+          <p className="text-white font-sans text-sm sm:text-base font-medium leading-tight truncate">
+            {formattedName}
           </p>
+          {subtitle && (
+            <p className="text-zinc-400 font-sans text-xs sm:text-xs mt-1 leading-normal line-clamp-2">
+              {subtitle}
+            </p>
+          )}
         </div>
+
+        {/* Author Image - Aspect Square & flush right */}
+        {image && (
+          <div className="h-full aspect-square flex-shrink-0 overflow-hidden rounded-none">
+            <img
+              src={image}
+              alt={name}
+              className="w-full h-full object-cover object-center grayscale contrast-105 rounded-none block"
+            />
+          </div>
+        )}
       </div>
+
+      {/* Bottom Accent Bar - Pure solid yellow-200 with no subpixel gap */}
+      <div className="h-[6px] w-full bg-[#fde68a] flex-shrink-0 relative z-10 block border-0 outline-none -mt-[1px]" />
     </div>
   );
 }
+
+
+
+
+
+
+
