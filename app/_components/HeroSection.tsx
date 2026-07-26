@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { DiaText } from "@/components/ui/dia-text";
 
 export default function HeroSection() {
   return (
@@ -48,9 +49,24 @@ export default function HeroSection() {
             className="lg:col-span-8"
           >
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-normal text-white tracking-tight leading-tight">
-              Delivering <span className="text-yellow-200 font-medium">Excellence</span>,
+              Delivering{" "}
+              <DiaText
+                text={["Excellence", "Global Cargo", "Reliability", "Tomorrow"]}
+                colors={["#fde68a", "#f59e0b", "#e1e1fe", "#ffffff"]}
+                textColor="#fde68a"
+                repeat={true}
+                repeatDelay={2}
+                duration={1.6}
+                className="font-medium inline-block"
+              />
               <br />
-              Delivering Tomorrow
+              <DiaText
+                text="Delivering Tomorrow"
+                colors={["#ffffff", "#fde68a", "#ffffff"]}
+                textColor="#ffffff"
+                duration={2}
+                delay={0.4}
+              />
             </h1>
           </motion.div>
 
@@ -82,3 +98,4 @@ export default function HeroSection() {
     </section>
   );
 }
+
