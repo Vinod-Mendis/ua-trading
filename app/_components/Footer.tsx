@@ -16,7 +16,6 @@ const footerLinks = {
     { href: "/about", label: "About Us" },
     { href: "/services", label: "Our Services" },
     { href: "/process", label: "How It Works" },
-    { href: "/gallery", label: "Gallery" },
     { href: "/contact", label: "Contact" },
   ],
   services: [

@@ -2,20 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  User,
-  Phone,
-  Mail,
-  MapPin,
-  Globe2,
-  Package,
-  Weight,
-  MessageSquare,
-  Send,
-  CheckCircle2,
-  Loader2,
-  MessageCircle,
-} from "lucide-react";
+import { Loader2 } from "lucide-react";
 
 interface FormData {
   fullName: string;
@@ -123,12 +110,12 @@ export default function QuoteForm() {
   };
 
   const inputClass = (field: string) =>
-    `form-input w-full bg-white border rounded-lg px-4 py-3 text-slate-900 placeholder-slate-400 text-sm transition-all duration-200 ${
-      errors[field] ? "border-red-500" : "border-slate-200 hover:border-slate-350"
+    `form-input w-full bg-white border px-4 py-3 text-slate-900 placeholder:text-slate-400 text-sm ${
+      errors[field] ? "border-red-500" : "border-slate-300"
     }`;
 
   const labelClass =
-    "block text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5 flex items-center gap-2";
+    "block text-xs font-mono uppercase tracking-widest text-slate-500 mb-2";
 
   return (
     <div className="relative">
@@ -139,33 +126,31 @@ export default function QuoteForm() {
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center justify-center text-center py-12 px-6 rounded-xl bg-slate-50 border border-slate-200"
+            className="py-8"
           >
-            <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center mb-5">
-              <CheckCircle2 className="w-8 h-8 text-emerald-600" />
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 font-display mb-2">
-              Quote Request Received
-            </h3>
-            <p className="text-slate-500 text-sm leading-relaxed max-w-md mb-6">
-              Thank you, <strong className="text-slate-900">{form.fullName}</strong>.
-              We will calculate your shipping rates and reach out via email or WhatsApp within 24 hours.
+            <p className="text-xs font-mono uppercase tracking-widest text-slate-400">
+              Received
             </p>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <h3 className="mt-4 text-3xl sm:text-4xl font-display font-normal text-slate-900 tracking-tight">
+              The quote is in.
+            </h3>
+            <p className="mt-4 text-slate-500 leading-relaxed max-w-md">
+              Thanks, {form.fullName}. We will send the sea and air rates by email or WhatsApp within one business day.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-6">
               <a
                 href="https://wa.me/85512345678?text=Hello%2C%20I%20just%20submitted%20a%20quote%20request%20on%20your%20website."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-colors text-sm"
+                className="inline-flex items-center justify-center bg-slate-950 hover:bg-slate-800 text-white font-medium text-xs sm:text-sm uppercase tracking-widest px-8 py-3.5"
               >
-                <MessageCircle className="w-4 h-4" />
-                Follow Up on WhatsApp
+                WhatsApp
               </a>
               <button
                 onClick={handleReset}
-                className="px-5 py-2.5 rounded-lg border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors text-sm"
+                className="text-xs font-mono uppercase tracking-widest text-slate-900 underline text-left"
               >
-                New Request
+                Start another
               </button>
             </div>
           </motion.div>
@@ -184,8 +169,7 @@ export default function QuoteForm() {
               {/* Full Name */}
               <div>
                 <label htmlFor="fullName" className={labelClass}>
-                  <User className="w-3.5 h-3.5 text-slate-400" />
-                  Full Name <span className="text-red-500">*</span>
+                  Full name
                 </label>
                 <input
                   id="fullName"
@@ -205,8 +189,7 @@ export default function QuoteForm() {
               {/* WhatsApp */}
               <div>
                 <label htmlFor="whatsapp" className={labelClass}>
-                  <Phone className="w-3.5 h-3.5 text-slate-400" />
-                  Phone / WhatsApp <span className="text-red-500">*</span>
+                  Phone / WhatsApp
                 </label>
                 <input
                   id="whatsapp"
@@ -226,8 +209,7 @@ export default function QuoteForm() {
               {/* Email */}
               <div>
                 <label htmlFor="email" className={labelClass}>
-                  <Mail className="w-3.5 h-3.5 text-slate-400" />
-                  Email Address <span className="text-red-500">*</span>
+                  Email
                 </label>
                 <input
                   id="email"
@@ -247,8 +229,7 @@ export default function QuoteForm() {
               {/* Pickup Location */}
               <div>
                 <label htmlFor="pickupLocation" className={labelClass}>
-                  <MapPin className="w-3.5 h-3.5 text-slate-400" />
-                  Pickup City / Location <span className="text-red-500">*</span>
+                  Pickup city
                 </label>
                 <input
                   id="pickupLocation"
@@ -267,8 +248,7 @@ export default function QuoteForm() {
               {/* Destination Country */}
               <div>
                 <label htmlFor="destinationCountry" className={labelClass}>
-                  <Globe2 className="w-3.5 h-3.5 text-slate-400" />
-                  Destination Country <span className="text-red-500">*</span>
+                  Destination
                 </label>
                 <select
                   id="destinationCountry"
@@ -294,8 +274,7 @@ export default function QuoteForm() {
               {/* Type of Goods */}
               <div>
                 <label htmlFor="goodsType" className={labelClass}>
-                  <Package className="w-3.5 h-3.5 text-slate-400" />
-                  Type of Goods <span className="text-red-500">*</span>
+                  Goods
                 </label>
                 <select
                   id="goodsType"
@@ -322,8 +301,7 @@ export default function QuoteForm() {
             {/* Weight */}
             <div>
               <label htmlFor="weight" className={labelClass}>
-                <Weight className="w-3.5 h-3.5 text-slate-400" />
-                Weight Estimate (kg)
+                Weight
               </label>
               <input
                 id="weight"
@@ -339,8 +317,7 @@ export default function QuoteForm() {
             {/* Message */}
             <div>
               <label htmlFor="message" className={labelClass}>
-                <MessageSquare className="w-3.5 h-3.5 text-slate-400" />
-                Details or Special Requests
+                Notes
               </label>
               <textarea
                 id="message"
@@ -357,18 +334,15 @@ export default function QuoteForm() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn-gold w-full flex items-center justify-center gap-2 py-4 rounded-lg text-sm font-semibold disabled:opacity-75 disabled:cursor-not-allowed"
+              className="inline-flex items-center justify-center bg-slate-950 hover:bg-slate-800 text-white font-medium text-xs sm:text-sm uppercase tracking-widest px-8 py-3.5 disabled:opacity-70"
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Processing...
+                  <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  Sending
                 </>
               ) : (
-                <>
-                  <Send className="w-4 h-4" />
-                  Request Shipping Quote
-                </>
+                "Request a quote"
               )}
             </button>
           </motion.form>
