@@ -31,7 +31,11 @@ export default function AboutSection() {
             <p className="text-3xl sm:text-4xl lg:text-5xl font-display font-normal text-slate-900 leading-tight tracking-tight w-full max-w-none">
               We empower businesses to move goods smarter, faster, and more
               sustainably with innovative logistics solutions that drive growth
-              and transform <span className="bg-yellow-200 text-slate-900 px-3.5 py-1">global shipping</span>.
+              and transform{" "}
+              <span className="bg-yellow-200 px-[0.2em] box-decoration-clone [box-decoration-break:clone]">
+                global shipping
+              </span>
+              .
             </p>
           </motion.div>
         </div>
