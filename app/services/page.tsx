@@ -1,12 +1,4 @@
 import type { Metadata } from "next";
-import {
-  Container,
-  Package,
-  ShoppingBag,
-  FileText,
-  CheckCircle2,
-  ArrowRight,
-} from "lucide-react";
 import Link from "next/link";
 import AnimatedSection from "../_components/AnimatedSection";
 import CTASection from "../_components/CTASection";
@@ -14,177 +6,181 @@ import CTASection from "../_components/CTASection";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Explore international cargo shipping, personal parcels delivery, Cambodian supplier sourcing, and export declaration coordination services by A & B Trading.",
+    "International cargo, personal packages, product sourcing, and export paperwork from Cambodia to Sri Lanka.",
 };
+
+const highlight =
+  "bg-yellow-200 px-[0.2em] box-decoration-clone [box-decoration-break:clone]";
 
 const services = [
   {
     id: "cargo",
-    icon: Container,
-    badge: "Commercial Focus",
-    title: "International Cargo Shipping",
+    kicker: "Sea & air freight",
+    title: "International Cargo",
     description:
-      "Reliable bulk cargo and commercial shipping services connecting Cambodia to Sri Lanka and other global ports. We handle shipment bookings, declarations, and tracking milestones.",
-    features: [
-      "Sea freight & air freight bookings",
-      "Full and less-than-container loads",
-      "Customs clearing document checks",
-      "Cargo transit updates",
-      "Commercial cargo handling",
-      "Door-to-port coordination options",
-      "Secure cargo sorting",
-    ],
-    color: "text-slate-800",
-    bg: "bg-slate-50",
-    border: "border-slate-200",
-    badgeColor: "bg-slate-900 text-white",
+      "Commercial consignments from Cambodia to Sri Lanka and onward ports. Full containers and smaller loads, booked and tracked.",
+    points: ["Sea or air", "Container and smaller loads", "Departure to arrival updates"],
+    image:
+      "https://images.unsplash.com/photo-1494412651409-8963ce7935a7?auto=format&fit=crop&w=1400&q=80",
+    alt: "Shipping containers stacked at a port",
   },
   {
     id: "personal",
-    icon: Package,
-    badge: "Individual Focus",
-    title: "Personal Package Delivery",
+    kicker: "Door to door",
+    title: "Personal Packages",
     description:
-      "Send personal parcels, gifts, family care packages, and clothing safely abroad. We organize pick-ups and help verify packaging conforms to shipping rules.",
-    features: [
-      "Gifts and family care packages",
-      "Clothing, footwear and accessories",
-      "Secure box wrapping checks",
-      "Affordable parcel pricing weight brackets",
-      "WhatsApp shipping updates",
-      "Simple pick-up scheduling",
-      "Permitted dry goods shipping",
-    ],
-    color: "text-slate-800",
-    bg: "bg-slate-50",
-    border: "border-slate-200",
-    badgeColor: "bg-slate-100 text-slate-700 border border-slate-200",
+      "Gifts, clothes, and family parcels picked up in Cambodia and delivered abroad. The quote is based on weight, not a surprise at the dock.",
+    points: ["Pickup in Phnom Penh", "Weight-based quote", "Updates on WhatsApp"],
+    image:
+      "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1400&q=80",
+    alt: "Packages prepared for delivery",
   },
   {
     id: "sourcing",
-    icon: ShoppingBag,
-    badge: "Supplier Search",
-    title: "Product Sourcing from Cambodia",
+    kicker: "Local suppliers",
+    title: "Product Sourcing",
     description:
-      "Looking to purchase quality Cambodian dry goods or local manufactures? We assist with locating trusted suppliers, checking products, and shipping purchases.",
-    features: [
-      "Cambodian dry goods supplier locating",
-      "Basic supplier checks",
-      "Local procurement coordination",
-      "Handicrafts and textiles sourcing support",
-      "Bulk purchase coordination",
-      "Pre-shipment packaging reviews",
-      "Consolidated shipping preparation",
-    ],
-    color: "text-slate-800",
-    bg: "bg-slate-50",
-    border: "border-slate-200",
-    badgeColor: "bg-slate-100 text-slate-700 border border-slate-200",
+      "We find a Cambodian supplier, check the goods, and ship the purchase as one consignment.",
+    points: ["Dry goods and textiles", "Supplier check before you pay", "Packed and shipped together"],
+    image:
+      "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1400&q=80",
+    alt: "Folded textiles ready for sourcing",
   },
   {
     id: "export",
-    icon: FileText,
-    badge: "Documentation",
-    title: "Export Coordination & Documentation",
+    kicker: "Customs paperwork",
+    title: "Export Assistance",
     description:
-      "Simplify your export coordination. We help verify invoices, packing lists, and clearance certificates required to ensure smooth border exits from Cambodia.",
-    features: [
-      "Export invoice format checking",
-      "Packing list review templates",
-      "Customs declaration submission checks",
-      "Border clearance document checking",
-      "Packaging standard reviews",
-      "Regulatory alignment guidance",
-      "Coordination with local handlers",
-    ],
-    color: "text-slate-800",
-    bg: "bg-slate-50",
-    border: "border-slate-200",
-    badgeColor: "bg-slate-100 text-slate-700 border border-slate-200",
+      "Invoices, packing lists, and clearance papers prepared so the shipment can leave Cambodia without a last-minute hold.",
+    points: ["Invoice and packing list", "Customs declaration", "Coordination with local handlers"],
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1400&q=80",
+    alt: "Export documents spread across a desk",
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <div className="bg-white pt-20">
-      {/* Title Banner */}
-      <section className="py-24 bg-slate-50 border-b border-slate-100 relative overflow-hidden">
-        <div className="relative max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center space-y-6">
+    <>
+      <section className="bg-white pt-28 lg:pt-36 pb-8 lg:pb-12" aria-label="Services">
+        <div className="w-full px-6 sm:px-10 lg:px-16">
           <AnimatedSection>
-            <span className="inline-block text-gold-600 text-xs font-semibold uppercase tracking-widest mb-4">
-              What We Offer
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 font-display mb-6">
-              Our Services
-            </h1>
-            <p className="text-slate-500 text-lg sm:text-xl leading-relaxed max-w-2xl mx-auto">
-              From personal package dispatches to commercial cargo forwarding, we simplify shipping and sourcing in Cambodia.
-            </p>
+            <div className="w-full flex items-center gap-4 mb-12 lg:mb-20">
+              <div className="flex items-center gap-1.5 text-slate-900 text-xs sm:text-sm tracking-widest font-mono font-medium uppercase whitespace-nowrap">
+                <span className="text-slate-400">+</span> SERVICES
+              </div>
+              <div className="h-px flex-1 bg-slate-300/80" />
+            </div>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+            <AnimatedSection className="lg:col-span-8">
+              <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-normal text-slate-900 tracking-tight leading-[1.15]">
+                Cargo, parcels,
+                <br />
+                <span className={highlight}>sourcing, paperwork.</span>
+              </h1>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.12} className="lg:col-span-4">
+              <div className="flex items-start gap-2.5 text-slate-600 text-base sm:text-lg lg:text-xl font-light leading-snug max-w-xs">
+                <span className="text-slate-400 select-none font-mono text-xl leading-none pt-0.5">
+                  └
+                </span>
+                <p>Four services from one desk in Phnom Penh. The quote covers the one you actually need.</p>
+              </div>
+            </AnimatedSection>
+          </div>
+
+          <AnimatedSection delay={0.18} className="mt-14 lg:mt-20">
+            <figure>
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-[42vh] min-h-[260px] max-h-[520px] object-cover"
+                src="https://res.cloudinary.com/vccpsacloud/video/upload/v1784984148/container-video_dwxqwd.mp4"
+                aria-label="Containers moving through a freight terminal"
+              />
+              <figcaption className="mt-3 text-xs font-mono uppercase tracking-widest text-slate-400">
+                Freight leaving Cambodia
+              </figcaption>
+            </figure>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Services List */}
-      <section className="py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+      <section className="w-full bg-white py-20 sm:py-28 lg:py-36 text-slate-900 border-t border-slate-100">
+        <div className="w-full px-6 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
+            <AnimatedSection className="lg:col-span-3 pt-1">
+              <div className="flex items-center gap-2 text-base sm:text-lg lg:text-xl tracking-widest font-mono font-semibold uppercase text-slate-600">
+                <span className="text-slate-400">+</span> WHAT YOU CAN BOOK
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.12} className="lg:col-span-9">
+              <p className="text-3xl sm:text-4xl lg:text-5xl font-display font-normal text-slate-900 leading-[1.25] tracking-tight">
+                We move commercial cargo, send personal packages, find the
+                supplier, and prepare the export papers{" "}
+                <span className={highlight}>before it leaves</span> Phnom Penh.
+              </p>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-[#f4f4f6] py-20 sm:py-28 lg:py-36 text-slate-900">
+        <div className="w-full px-6 sm:px-10 lg:px-16">
+          <AnimatedSection>
+            <div className="w-full flex items-center gap-4 mb-12 lg:mb-16">
+              <div className="flex items-center gap-2 text-base sm:text-lg lg:text-xl tracking-widest font-mono font-semibold uppercase text-slate-600 whitespace-nowrap">
+                <span className="text-slate-400">+</span> THE SERVICES
+              </div>
+              <div className="h-px flex-1 bg-slate-300/70" />
+            </div>
+          </AnimatedSection>
+
           <div className="space-y-16 lg:space-y-24">
             {services.map((service, index) => {
-              const Icon = service.icon;
-              const isEven = index % 2 === 0;
+              const imageFirst = index % 2 === 0;
               return (
-                <AnimatedSection
-                  key={service.id}
-                  direction={isEven ? "left" : "right"}
-                  delay={0.05}
-                >
-                  <div
+                <AnimatedSection key={service.id}>
+                  <article
                     id={service.id}
-                    className={`grid lg:grid-cols-2 gap-12 lg:gap-16 items-center p-8 lg:p-12 rounded-xl bg-white border border-slate-200/80 hover:border-slate-350 transition-all duration-300`}
+                    className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center scroll-mt-32"
                   >
-                    {/* Content details */}
-                    <div className={isEven ? "order-1" : "order-1 lg:order-2"}>
-                      <div className="flex items-center gap-3 mb-5">
-                        <div className={`w-10 h-10 rounded-lg ${service.bg} border border-slate-200 flex items-center justify-center`}>
-                          <Icon className={`w-5 h-5 ${service.color}`} strokeWidth={1.75} />
-                        </div>
-                        <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${service.badgeColor}`}>
-                          {service.badge}
-                        </span>
-                      </div>
-                      <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900 font-display mb-4">
+                    <img
+                      src={service.image}
+                      alt={service.alt}
+                      className={`w-full aspect-[4/3] object-cover lg:col-span-6 ${
+                        imageFirst ? "" : "lg:order-2"
+                      }`}
+                    />
+                    <div className={`lg:col-span-6 ${imageFirst ? "" : "lg:order-1"}`}>
+                      <p className="text-xs font-medium text-rose-500 tracking-wide">
+                        {service.kicker}
+                      </p>
+                      <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-display font-normal text-slate-900 tracking-tight">
                         {service.title}
                       </h2>
-                      <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                      <p className="mt-5 text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl">
                         {service.description}
                       </p>
+                      <ul className="mt-6 space-y-2 text-sm text-slate-500">
+                        {service.points.map((point) => (
+                          <li key={point}>{point}</li>
+                        ))}
+                      </ul>
                       <Link
                         href="/quote"
-                        className="inline-flex items-center gap-2 text-sm text-slate-900 font-semibold hover:text-gold-600 transition-colors group"
+                        className="inline-flex items-center justify-center bg-slate-950 hover:bg-slate-800 text-white font-medium text-xs sm:text-sm uppercase tracking-widest px-8 py-3.5 mt-8 transition-colors"
                       >
-                        Request Quote
-                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
+                        Request a quote
                       </Link>
                     </div>
-
-                    {/* Features checklist box */}
-                    <div className={isEven ? "order-2" : "order-2 lg:order-1"}>
-                      <div className={`p-6 sm:p-8 rounded-lg bg-slate-50 border border-slate-200`}>
-                        <h3 className="text-slate-900 font-semibold text-xs uppercase tracking-widest mb-4">
-                          Service Details
-                        </h3>
-                        <div className="grid grid-cols-1 gap-3">
-                          {service.features.map((feature) => (
-                            <div key={feature} className="flex items-start gap-2.5">
-                              <CheckCircle2 className={`w-4 h-4 text-slate-800 shrink-0 mt-0.5`} strokeWidth={2} />
-                              <span className="text-slate-600 text-xs sm:text-sm leading-normal">
-                                {feature}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  </article>
                 </AnimatedSection>
               );
             })}
@@ -192,37 +188,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Advisory section */}
-      <section className="py-24 bg-slate-50 border-t border-slate-100">
-        <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-          <AnimatedSection>
-            <h2 className="text-2xl sm:text-3xl font-semibold text-slate-900 font-display mb-4">
-              Need a Custom Logistics Plan?
-            </h2>
-            <p className="text-slate-500 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
-              Describe your package volume or import frequency, and our coordinators will suggest a competitive freight route.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-3">
-              <Link
-                href="/quote"
-                className="btn-gold flex items-center justify-center px-6 py-3 rounded-lg text-sm font-semibold"
-              >
-                Get Quote
-              </Link>
-              <a
-                href="https://wa.me/85512345678?text=Hello%2C%20I%20have%20questions%20about%20your%20services."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-outline flex items-center justify-center px-6 py-3 rounded-lg text-sm font-semibold"
-              >
-                WhatsApp Inquiry
-              </a>
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
-
       <CTASection />
-    </div>
+    </>
   );
 }
